@@ -1,0 +1,28 @@
+.pace {
+    display: none;
+}
+
+.main-style {
+    min-height: 100vh    
+}
+
+.btn-secondary { 
+    background-color: #DEE2E6;
+    border: 0;
+    color: black;
+}
+
+button {
+    position: relative;
+}
+
+.delete-icon{
+    position: absolute;
+    top: 10%;
+    right: 2%;
+}
+.edit-icon{
+    position: absolute;
+    top: 70%;
+    right: 2%;
+}
