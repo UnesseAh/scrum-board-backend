@@ -5,16 +5,20 @@
     //ROUTING
     if(isset($_POST['save']))        saveTask($connect);
     if(isset($_POST['update']))      updateTask();
-    if(isset($_POST['delete']))      deleteTask();
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        deleteTask($id);
+    };
     
 
     function getTasks($connect, $a){
-        $sql = "SELECT * FROM tasks where status_id=$a";
+        $sql = "SELECT * FROM tasks WHERE status_id=$a";
         $result = mysqli_query($connect, $sql);
 
         while($row = mysqli_fetch_assoc($result)){
+            $id = $row['id'];
                 echo '
-            <button class="bg-white w-100 border-0 border-top d-flex py-2 " >
+            <button onclick="addTaskForm()" class="bg-white w-100 border-0 border-top d-flex py-2 " >
                 <div class="px-2">
                     <i class="${icon}"></i> 
                 </div>
@@ -31,14 +35,13 @@
                     </div>
                 </div>
                 <div class="delete-icon">
-                <i" class="py-2 px-2 bi bi-trash"></i>
+                <a  href="index.php?id='.$id.'"><i class="py-2 px-2 bi bi-trash"></i></a>
                 </div>
                 <div class="edit-icon">
-                <i data-bs-toggle="modal" data-bs-target="#modal-task" class="py-2 px-2 bi bi bi-pencil-square"></i>
+                <a href="form.php?id='.$id.'"><i class="py-2 px-2 bi bi bi-pencil-square"></i></a>
                 </div>
             </button>';
             }
-        
 
     }
 
@@ -68,20 +71,28 @@
         }
     }
 
-    // function updateTask()
-    // {
-    //     //CODE HERE
-    //     //SQL UPDATE
-    //     $_SESSION['message'] = "Task has been updated successfully !";
-	// 	header('location: index.php');
-    // }
+    function updateTask()
+    {
+        //CODE HERE
+        //SQL UPDATE
+        $_SESSION['message'] = "Task has been updated successfully !";
+		header('location: index.php');
+    }
 
-    // function deleteTask()
-    // {
-    //     //CODE HERE
-    //     //SQL DELETE
-    //     $_SESSION['message'] = "Task has been deleted successfully !";
-	// 	header('location: index.php');
-    // }
+    function deleteTask($id)
+    {
+       /*  $id = $_GET['id']; */
+        $sql = "DELETE FROM tasks WHERE id='$id'";
+        global $connect;
+        $result = mysqli_query($connect, $sql);
+    
+        if(isset($result)){
+            header('location:index.php');
+        }
+        // //CODE HERE
+        // //SQL DELETE
+        // $_SESSION['message'] = "Task has been deleted successfully !";
+		// header('location: index.php');
+    }
 
 ?>

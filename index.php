@@ -39,7 +39,7 @@
 				</div>
 				
 				<div class="">
-					<button data-bs-toggle="#modal-task"  data-bs-target="modal" class="btn btn-success rounded-pill" onclick="addTaskForm()"><i class="bi bi-plus-lg"></i> Add Task</a>
+					<button class="btn btn-success rounded-pill" onclick="addTaskForm()"><i class="bi bi-plus-lg"></i> Add Task</a>
 				</div>
 			</div>
 			
