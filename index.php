@@ -47,7 +47,7 @@
 				<div class="col-lg-4 col-md-6 col-sm-12">
 					<div class="card">
 						<div class="card-header bg-dark  py-1">
-						<h4 class="text-white m-0">To do (<span id="to-do-tasks-count"></span>)</h4>
+						<h4 class="text-white m-0">To do (<span id="to-do-tasks-count"><?php countTask(1) ?></span>)</h4>
 						</div>
 						<div class="" id="to-do-tasks">
 							<!-- TO DO TASKS HERE -->
@@ -140,7 +140,7 @@
 				<div class="col-lg-4 col-md-6 col-sm-12">
 					<div class="card">
 						<div class="card-header bg-dark py-1">
-							<h4 class="text-white m-0">In Progress (<span id="in-progress-tasks-count">0</span>)</h4>
+							<h4 class="text-white m-0">In Progress (<span id="in-progress-tasks-count"><?php countTask(2); ?></span>)</h4>
 
 						</div>
 						<div class="" id="in-progress-tasks">
@@ -218,7 +218,7 @@
 				<div class="col-lg-4 col-md-6 col-sm-12">
 					<div class="card">
 						<div class="card-header bg-dark py-1">
-							<h4 class="text-white m-0">Done (<span id="done-tasks-count">0</span>)</h4>
+							<h4 class="text-white m-0">Done (<span id="done-tasks-count"><?php countTask(3); ?></span>)</h4>
 
 						</div>
 						<div class="" id="done-tasks">
@@ -339,10 +339,10 @@
 						<label for="Priority" class="col-form-label">Priority</label>
 						<select class="form-select" aria-label="Default select example" id="Priority" name="priority" required>
 							<option selected disabled>Please select</option>
-							<option value="Low">Low</option>
-							<option value="Medium">Medium</option>
-							<option value="High">High</option>
-							<option value="Critical">Critical</option>
+							<option value="1">Low</option>
+							<option value="2">Medium</option>
+							<option value="3">High</option>
+							<option value="4">Critical</option>
 
 						</select>
 					</div>

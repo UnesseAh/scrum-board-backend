@@ -5,20 +5,20 @@
     //ROUTING
     if(isset($_POST['save']))        saveTask($connect);
     if(isset($_POST['update']))      updateTask();
-    if(isset($_GET['id'])){
-        $id = $_GET['id'];
-        deleteTask($id);
+    if(isset($_POST['delete'])){
+        deleteTask();
     };
     
 
     function getTasks($connect, $a){
-        $sql = "SELECT * FROM tasks WHERE status_id=$a";
+        $sql = "SELECT * FROM tasks JOIN types ON tasks.type_id=types.id_t JOIN priorities ON tasks.priority_id=priorities.id_p WHERE status_id=$a";
         $result = mysqli_query($connect, $sql);
 
         while($row = mysqli_fetch_assoc($result)){
             $id = $row['id'];
                 echo '
-            <button onclick="addTaskForm()" class="bg-white w-100 border-0 border-top d-flex py-2 " >
+            <form action="form.php" method="post" >
+            <button type="submit"  class="bg-white w-100 border-0 border-top d-flex py-2 " >
                 <div class="px-2">
                     <i class="${icon}"></i> 
                 </div>
@@ -29,18 +29,17 @@
                         <div title="'.$row["description"].'">'.$row["description"].'</div>
                     </div>
                     <div class="">
-                        <span class="btn btn-primary">'.$row["priority_id"].'</span>
-                        <span class="btn btn-light text-black">'.$row["type_id"].'</span>
+                        <span class="btn btn-primary">'.$row["name_p"].'</span>
+                        <span class="btn btn-light text-black">'.$row["name_t"].'</span>
                     
                     </div>
                 </div>
-                <div class="delete-icon">
-                <a  href="index.php?id='.$id.'"><i class="py-2 px-2 bi bi-trash"></i></a>
-                </div>
-                <div class="edit-icon">
-                <a href="form.php?id='.$id.'"><i class="py-2 px-2 bi bi bi-pencil-square"></i></a>
-                </div>
-            </button>';
+                
+              
+                <input type="hidden" name="task-id" value="'.$id.'">
+            </button>
+            </form>'
+            ;
             }
 
     }
@@ -48,13 +47,17 @@
 
     function saveTask($connect) {
         $title = $_POST['title'];
+
         $type = $_POST['type'];
+        if($type == 'Feature'){
+            $types = 1;
+        }else $types = 2;
         $priority = $_POST['priority'];
         $status = $_POST['status'];
         $datetime = $_POST['date'];
         $description = $_POST['description'];
 
-        $sql = "INSERT INTO tasks VALUES (null, '$title', '$type', '$priority', '$status', '$datetime', '$description')";
+        $sql = "INSERT INTO tasks VALUES (null, '$title', '$types', '$priority', '$status', '$datetime', '$description')";
         //validating use input data
         if(empty($title) || empty($type) || empty($priority) || empty($status) || empty($datetime) || empty($description)){
             echo "Please fill all the fields";
@@ -71,28 +74,51 @@
         }
     }
 
-    function updateTask()
-    {
+    function updateTask(){
+        global $connect;
+        $formid=$_POST["form_id"];
+        $title = $_POST['title'];
+        $type = $_POST['type'];
+        if($type == 'Feature'){
+            $types = 1;
+        }else $types = 2;
+        $priority = $_POST['priority'];
+        $status = $_POST['status'];
+        $datetime = $_POST['date'];
+        $description = $_POST['description'];
+        
+ 
+        $sql = "UPDATE tasks set title = '$title', type_id = '$types' , priority_id = '$priority' , status_id = '$status' , task_datetime = '$datetime' , description = '$description' WHERE id ='$formid'";
+        $result = mysqli_query($connect, $sql);
+
         //CODE HERE
         //SQL UPDATE
-        $_SESSION['message'] = "Task has been updated successfully !";
 		header('location: index.php');
     }
 
-    function deleteTask($id)
+    function deleteTask()
     {
-       /*  $id = $_GET['id']; */
-        $sql = "DELETE FROM tasks WHERE id='$id'";
         global $connect;
-        $result = mysqli_query($connect, $sql);
-    
-        if(isset($result)){
-            header('location:index.php');
-        }
-        // //CODE HERE
-        // //SQL DELETE
-        // $_SESSION['message'] = "Task has been deleted successfully !";
-		// header('location: index.php');
+
+        $formid=$_POST["form_id"];
+			
+		$sql = "DELETE FROM tasks WHERE id='$formid'";
+        mysqli_query($connect,$sql);
+		header('location:index.php');
+        //CODE HERE
+        //SQL DELETE
+		
     }
+
+    function countTask($num){
+        global $connect;
+
+        $sql="SELECT * FROM tasks where status_id=$num";
+        if ($result=mysqli_query($connect,$sql)){
+        $rowcount=mysqli_num_rows($result);
+        printf("%d",$rowcount);
+        }
+    }
+
 
 ?>
