@@ -7,8 +7,8 @@
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
-<!-- ================== BEGIN core-css ================== -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+	<!-- ================== BEGIN core-css ================== -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" >
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 	<link href="assets/css/vendor.min.css" rel="stylesheet" />
@@ -25,7 +25,6 @@
     $sql = "SELECT * FROM tasks WHERE id ='$id'";
     $result = mysqli_query($connect, $sql);
     
-
   
     $row = mysqli_fetch_assoc($result);
     @$title = $row['title'];
@@ -98,7 +97,7 @@
 				?>
 </html>
 <script src="assets/js/vendor.min.js"></script>
-	<script src="assets/js/app.min.js"></script>
-	<!-- <script src="assets/js/data.js"></script> -->
-	<!-- <script src="assets/js/app.js"></script> -->
-	<script src="scripts.js"></script>
+<script src="assets/js/app.min.js"></script>
+<!-- <script src="assets/js/data.js"></script> -->
+<!-- <script src="assets/js/app.js"></script> -->
+<script src="scripts.js"></script>

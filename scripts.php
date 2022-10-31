@@ -10,7 +10,8 @@
     };
     
 
-    function getTasks($connect, $a){
+    function getTasks($connect, $a)
+    {
         $sql = "SELECT * FROM tasks JOIN types ON tasks.type_id=types.id_t JOIN priorities ON tasks.priority_id=priorities.id_p WHERE status_id=$a";
         $result = mysqli_query($connect, $sql);
 
@@ -34,14 +35,11 @@
                     
                     </div>
                 </div>
-                
-              
                 <input type="hidden" name="task-id" value="'.$id.'">
             </button>
             </form>'
             ;
-            }
-
+        }
     }
 
 
@@ -49,29 +47,19 @@
         $title = $_POST['title'];
 
         $type = $_POST['type'];
-        if($type == 'Feature'){
+        if($type == "feature"){
             $types = 1;
-        }else $types = 2;
+        }else{$types = 2;} 
         $priority = $_POST['priority'];
         $status = $_POST['status'];
         $datetime = $_POST['date'];
         $description = $_POST['description'];
 
         $sql = "INSERT INTO tasks VALUES (null, '$title', '$types', '$priority', '$status', '$datetime', '$description')";
-        //validating use input data
-        if(empty($title) || empty($type) || empty($priority) || empty($status) || empty($datetime) || empty($description)){
-            echo "Please fill all the fields";
-        } else {
-            //inserting into database
-            $result = mysqli_query($connect, $sql);
-            if($result){
-                echo "Data inserted successfully";
-            //If data is inserted seccessfully go back to the main page
-                header('location: index.php');
-            }else {
-                echo "Data not inserted";
-            }
-        }
+
+        $result = mysqli_query($connect, $sql);
+        header('location: index.php');
+        
     }
 
     function updateTask(){
@@ -86,8 +74,7 @@
         $status = $_POST['status'];
         $datetime = $_POST['date'];
         $description = $_POST['description'];
-        
- 
+         
         $sql = "UPDATE tasks set title = '$title', type_id = '$types' , priority_id = '$priority' , status_id = '$status' , task_datetime = '$datetime' , description = '$description' WHERE id ='$formid'";
         $result = mysqli_query($connect, $sql);
 
@@ -119,6 +106,5 @@
         printf("%d",$rowcount);
         }
     }
-
 
 ?>
