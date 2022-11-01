@@ -61,10 +61,10 @@
 						<label for="Priority" class="col-form-label">Priority</label>
 						<select class="form-select" aria-label="Default select example" id="Priority" name="priority" required>
 							<option selected disabled>Please select</option>
-							<option value="1" <?php echo $priority == 1 ? 'selected' :'' ; ?>>Low</option>
-							<option value="2" <?php echo $priority == 2 ? 'selected' :'' ; ?>>Medium</option>
-							<option value="3" <?php echo $priority == 3 ? 'selected' :'' ; ?>>High</option>
-							<option value="4" <?php echo $priority == 4 ? 'selected' :'' ; ?>>Critical</option>
+							<option value="1" <?php echo $priority == 1 ? 'selected' : '' ; ?>>Low</option>
+							<option value="2" <?php echo $priority == 2 ? 'selected' : '' ; ?>>Medium</option>
+							<option value="3" <?php echo $priority == 3 ? 'selected' : '' ; ?>>High</option>
+							<option value="4" <?php echo $priority == 4 ? 'selected' : '' ; ?>>Critical</option>
 
 						</select>
 					</div>
@@ -72,9 +72,9 @@
 						<label for="Status" class="col-form-label">Status</label>
 						<select class="form-select" aria-label="Default select example" id="Status" name="status" required>
 							<option selected disabled>Please select</option>
-							<option value="1" <?php echo $status == 1 ? 'selected' :'' ; ?>>To Do</option>
-							<option value="2" <?php echo $status == 2 ? 'selected' :'' ; ?>>In Progress</option>
-							<option value="3" <?php echo $status == 3 ? 'selected' :'' ; ?>>Done</option>
+							<option value="1" <?php echo $status == 1 ? 'selected' : '' ; ?>>To Do</option>
+							<option value="2" <?php echo $status == 2 ? 'selected' : '' ; ?>>In Progress</option>
+							<option value="3" <?php echo $status == 3 ? 'selected' : '' ; ?>>Done</option>
 						</select>
 					</div>
 					<div class="mb-3">

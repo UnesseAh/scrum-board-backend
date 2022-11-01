@@ -52,7 +52,8 @@
 						<div class="" id="to-do-tasks">
 							<!-- TO DO TASKS HERE -->
 							<?php
-							getTasks($connect, 1);
+						
+							getTasks($connect, 1, 1);
 							?>
 							<!-- <button class="d-flex button border-0 border-bottom w-100 py-2 px-3">
 								<div class="col-md-1">
@@ -146,7 +147,7 @@
 						<div class="" id="in-progress-tasks">
 							<!-- IN PROGRESS TASKS HERE -->
 							<?php
-							getTasks($connect, 2);
+							getTasks($connect, 2, 2);
 							?>
 							<!-- <button class="d-flex button border-0 border-bottom w-100 w-100 py-2 px-3">
 								<div class="col-md-1">
@@ -224,7 +225,7 @@
 						<div class="" id="done-tasks">
 							<!-- DONE TASKS HERE -->
 							<?php
-							getTasks($connect, 3);
+							getTasks($connect, 3, 3);
 							?>
 							<!-- <button class="d-flex button border-0 border-bottom w-100 w-100 py-2 px-3">
 								<div class="col-md-1">
@@ -314,7 +315,7 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				
-				<form action="scripts.php" method="POST">
+				<form id="formModal" action="scripts.php" method="POST">
 				<div class="modal-body">
 					<div class="mb-3">
 						<label for="recipient-name" class="col-form-label">Title</label>
@@ -323,7 +324,7 @@
 					<div class="mb-3">
 						<label for="" class="col-form-label">Type</label>
 						<div class="form-check ms-3">
-							<input value="feature" class="form-check-input" type="radio" name="type" id="ft" checked>
+							<input value="feature" class="form-check-input" type="radio" value="type" id="ft" checked>
 							<label class="form-check-label" for="flexRadioDefault1">
 							Feature
 							</label>
@@ -338,7 +339,7 @@
 					<div class="mb-3">
 						<label for="Priority" class="col-form-label">Priority</label>
 						<select class="form-select" aria-label="Default select example" id="Priority" name="priority" required>
-							<option selected disabled>Please select</option>
+							<option selected disabled value="">Please select</option>
 							<option value="1">Low</option>
 							<option value="2">Medium</option>
 							<option value="3">High</option>
@@ -349,7 +350,7 @@
 					<div class="mb-3">
 						<label for="Status" class="col-form-label">Status</label>
 						<select class="form-select" aria-label="Default select example" id="Status" name="status" required>
-							<option selected disabled>Please select</option>
+							<option selected disabled value="">Please select</option>
 							<option value="1">To Do</option>
 							<option value="2">In Progress</option>
 							<option value="3">Done</option>
@@ -365,9 +366,7 @@
 					</div>
 				</div>
 				<div class="modal-footer" id="footerModal">
-						<button href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" name="delete" class="btn btn-danger task-action-btn" id="task-delete-btn">Delete</button>
-                        <button type="submit" name="update" class="btn btn-warning task-action-btn" id="task-update-btn">Update</button>
+						<button href="index.php" class="btn btn-white" data-bs-dismiss="modal">Cancel</button>
                         <button type="submit" name="save" class="btn btn-primary task-action-btn" id="task-save-btn">Save</button>
 				</div>
 				</form>

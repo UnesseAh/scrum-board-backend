@@ -10,18 +10,26 @@
     };
     
 
-    function getTasks($connect, $a)
+    function getTasks($connect, $a, $icon)
     {
-        $sql = "SELECT * FROM tasks JOIN types ON tasks.type_id=types.id_t JOIN priorities ON tasks.priority_id=priorities.id_p WHERE status_id=$a";
+        $sql = "SELECT * FROM tasks 
+        JOIN types ON tasks.type_id=types.id_t 
+        JOIN priorities ON tasks.priority_id=priorities.id_p 
+        WHERE status_id=$a";
         $result = mysqli_query($connect, $sql);
 
         while($row = mysqli_fetch_assoc($result)){
+            if($icon == 1){
+                $icon = "bi bi-question-circle text-green";
+            }else if($icon == 2){
+                $icon = "fa fa-circle-notch text-green";
+            }else $icon = "bi bi-check-circle text-green" ;
             $id = $row['id'];
                 echo '
             <form action="form.php" method="post" >
-            <button type="submit"  class="bg-white w-100 border-0 border-top d-flex py-2 " >
+            <button type="submit" class="bg-white w-100 border-0 border-top d-flex py-2 " >
                 <div class="px-2">
-                    <i class="${icon}"></i> 
+                    <i class="'.$icon.'"></i> 
                 </div>
                 <div class="text-start ">
                     <div class="h6">'.$row["title"].'</div>
@@ -46,18 +54,18 @@
     function saveTask($connect) {
         $title = $_POST['title'];
 
-        $type = $_POST['type'];
+        @$type = $_POST['type'];
         if($type == "feature"){
             $types = 1;
         }else{$types = 2;} 
-        $priority = $_POST['priority'];
-        $status = $_POST['status'];
+        @$priority = $_POST['priority'];
+        @$status = $_POST['status'];
         $datetime = $_POST['date'];
         $description = $_POST['description'];
 
         $sql = "INSERT INTO tasks VALUES (null, '$title', '$types', '$priority', '$status', '$datetime', '$description')";
-
         $result = mysqli_query($connect, $sql);
+        
         header('location: index.php');
         
     }
