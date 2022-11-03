@@ -10,12 +10,12 @@
     $user = $_ENV['DB_USER'];
     $password = $_ENV['DB_PASSWORD'];
     $database = $_ENV['DB_DATABASE'];
-
+    global $connect;
     //CONNECT TO DATABASE
     $connect = mysqli_connect($host, $user, $password, $database);
 
     // Check connection
-    if($connect === false){
+    if(!$connect){
         die("ERROR: Could not connect. " . mysqli_connect_error());
     }
     // Print host information
